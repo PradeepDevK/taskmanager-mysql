@@ -1,0 +1,45 @@
+==== Step 1 ====
+mkdir task-manager
+cd task-manager
+npm init -y
+
+==== Step 2 ====
+npm install express mysql2 body-parser cors dotenv
+
+==== Step 3 ====
+npm install -D typescript @types/node @types/express @types/cors ts-node nodemon
+
+==== Step 4 ====
+npx tsc --init
+
+==== tsconfig.json ====
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+
+==== DB Creation ====
+CREATE DATABASE task_manager;
+USE task_manager;
+
+CREATE TABLE tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  completed BOOLEAN DEFAULT FALSE
+);
+
+==== package.json ====
+"scripts": {
+  "start": "ts-node src/server.ts",
+  "dev": "nodemon src/server.ts"
+}
+
+==== execution ====
+npm run dev
